@@ -1,0 +1,68 @@
+version: '3.7'
+
+
+services:
+  
+  backend:
+    build:
+      context:  backend
+      dockerfile: Dockerfile
+    # image: harshaavarthini/tasktrack-backend
+    ports:
+      - "8081:8081" 
+    restart: always
+    depends_on: 
+      - db
+    environment: 
+
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/task
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password  
+ 
+
+
+
+  frontend:
+
+    build:
+      context: frontend 
+      dockerfile: Dockerfile
+    # image: harshaavarthini/tasktrack-frontend
+    # args:
+    #     APP_API_BASE_URL: http://127.0.0.1:8080
+    environment:
+      - APP_API_BASE_URL=http://127.0.0.1:8081
+    ports:
+      - "5010:5010" 
+    restart: always
+    depends_on:
+      - backend
+
+ 
+
+  
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: task
+      
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+
+volumes:
+  db-data:
+
+
+
+
+
+
+
+
+

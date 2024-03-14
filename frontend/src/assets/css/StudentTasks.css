@@ -1,0 +1,28 @@
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.alert-box {
+  margin: 2rem;
+  border: 2rem;
+  border-radius: 30;
+  border-color: "red";
+  color: red;
+  animation: blink 1s infinite;
+}

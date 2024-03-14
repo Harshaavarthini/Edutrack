@@ -1,0 +1,14 @@
+.filter-big-box {
+  display: flex;
+  width: 50vh;
+  justify-content: center;
+}
+
+.filterbox {
+  display: flex;
+  flex-direction: column;
+}
+
+.filterbox Textfield {
+  margin: 5px;
+}
